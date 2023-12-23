@@ -2,9 +2,13 @@ import jwt from "jsonwebtoken";
 import { authConfig } from "../config/authConfig.js";
 
 export const generateAccessToken = (user) => {
-  return jwt.sign({ id: user._id }, authConfig.jwtAccessTokenSecretKey, {
-    expiresIn: authConfig.jwtAccessTokenDuration,
-  });
+  return jwt.sign(
+    { id: user._id, email: user.email },
+    authConfig.jwtAccessTokenSecretKey,
+    {
+      expiresIn: authConfig.jwtAccessTokenDuration,
+    }
+  );
 };
 
 export const verifyAccessToken = (token) => {
@@ -20,9 +24,13 @@ export const decodeAccessToken = (token) => {
 };
 
 export const generateRefreshToken = (user) => {
-  return jwt.sign({ id: user._id }, authConfig.jwtRefreshTokenSecretKey, {
-    expiresIn: authConfig.jwtRefreshTokenDuration,
-  });
+  return jwt.sign(
+    { id: user._id, email: user.email },
+    authConfig.jwtRefreshTokenSecretKey,
+    {
+      expiresIn: authConfig.jwtRefreshTokenDuration,
+    }
+  );
 };
 
 export const verifyRefreshToken = (token) => {

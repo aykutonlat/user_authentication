@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/api", authenicateUser);
-app.use("/register/user", userRoutes);
+app.use("/user", userRoutes);
 
 const server = http.createServer(app);
 const io = new SocketIoServer(server);

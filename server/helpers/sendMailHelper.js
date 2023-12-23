@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import { userConfig } from "../config/userConfig.js";
+import { userConfig } from "../config/serverConfig.js";
 
 dotenv.config();
 
@@ -75,7 +75,7 @@ export const sendVerificationEmail = async (email, token) => {
       <div class="container">
           <h1>Hesap Doğrulama</h1>
           <p>Hesabınızı doğrulamak ve başlamak için lütfen aşağıdaki düğmeyi tıklayın:</p>
-          <a href="${process.env.CLIENT_URL}/user/activate/${token}" class="button">Hesabı Doğrula</a>
+          <a href="${process.env.CLIENT_URL}/user/verification-email/${token}" class="button">Hesabı Doğrula</a>
           <div class="footer">
               <p>Bu e-postayı talep etmediyseniz, lütfen dikkate almayın.</p>
           </div>
