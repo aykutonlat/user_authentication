@@ -1,7 +1,22 @@
 import mongoose from "mongoose";
 
+const emailValidator = (email) => {
+  const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailRegex.test(email);
+};
+
 const userSchema = new mongoose.Schema(
   {
+    firstName: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    lastName: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     username: {
       type: String,
       required: [true, "Please provide a username."],
@@ -15,13 +30,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      validate: {
-        validator: (value) => {
-          const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-          return emailRegex.test(value);
-        },
-        message: (props) => `${props.value} is not a valid email address.`,
-      },
+      validate: [emailValidator, "Please provide a valid email."],
     },
     password: {
       type: String,
@@ -34,7 +43,11 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "admin", "superadmin"],
       default: "user",
     },
-    isEmailVerified: {
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    activated: {
       type: Boolean,
       default: false,
     },
@@ -43,9 +56,9 @@ const userSchema = new mongoose.Schema(
       enum: ["active", "inactive"],
       default: "active",
     },
-    refreshToken: {
+    profileImageUrl: {
       type: String,
-      default: null,
+      default: "",
     },
   },
   {
