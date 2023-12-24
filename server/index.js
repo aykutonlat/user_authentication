@@ -7,6 +7,7 @@ import { Server as SocketIoServer } from "socket.io";
 import http from "http";
 import { authenicateUser } from "./middleware/auth.js";
 import { userRoutes } from "./routes/userRoutes.js";
+import './helpers/cronJobsHelper.js'
 
 dotenv.config();
 connectDB();

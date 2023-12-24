@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    registrationDate: {
+      type: Date,
+      default: Date.now,
+    },
     activated: {
       type: Boolean,
       default: false,
@@ -57,6 +61,10 @@ const userSchema = new mongoose.Schema(
       default: "active",
     },
     profileImageUrl: {
+      type: String,
+      default: "",
+    },
+    refreshToken: {
       type: String,
       default: "",
     },

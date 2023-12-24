@@ -15,6 +15,7 @@ export const verifyAccessToken = (token) => {
   try {
     return jwt.verify(token, authConfig.jwtAccessTokenSecretKey);
   } catch (error) {
+    console.log(error);
     return null;
   }
 };
