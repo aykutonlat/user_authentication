@@ -32,6 +32,11 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       validate: [emailValidator, "Please provide a valid email."],
     },
+    phoneNumber: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     password: {
       type: String,
       required: [true, "Please provide a password."],
@@ -53,7 +58,7 @@ const userSchema = new mongoose.Schema(
     },
     activated: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     status: {
       type: String,
